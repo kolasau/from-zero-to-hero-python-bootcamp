@@ -9,20 +9,20 @@ def next_turn(row, column):
             buttons[row][column]['text'] = player
             if check_winner() is False:
                 player = players[1]
-                label.config(text=(players[1] + ' turn'))
+                label.config(text=(players[1] + ', ваш ход!'))
             elif check_winner() is True:
-                label.config(text=(players[0] + ' wins'))
-            elif check_winner() == 'Tie':
-                label.config(text='Tie!')
+                label.config(text=(players[0] + ', поздравляем, вы победили!'))
+            elif check_winner() == 'Ничья':
+                label.config(text='Ничья!')
         else:
             buttons[row][column]['text'] = player
             if check_winner() is False:
                 player = players[0]
-                label.config(text=(players[0] + ' turn'))
+                label.config(text=(players[0] + ', ваш ход!'))
             elif check_winner() is True:
-                label.config(text=(players[1] + ' wins'))
-            elif check_winner() == 'Tie':
-                label.config(text='Tie!')
+                label.config(text=(players[1] + ', поздравляем, вы победили!'))
+            elif check_winner() == 'Ничья':
+                label.config(text='Ничья!')
 
 
 def check_winner():
@@ -53,7 +53,7 @@ def check_winner():
         for row in range(3):
             for column in range(3):
                 buttons[row][column].config(bg='yellow')
-        return 'Tie'
+        return 'Ничья'
     else:
         return False
 
@@ -74,21 +74,21 @@ def empty_spaces():
 def new_game():
     global player
     player = random.choice(players)
-    label.config(text=player + ' turn')
+    label.config(text=player + ', ваш ход!')
     for row in range(3):
         for column in range(3):
             buttons[row][column].config(text='', bg='#F0F0F0')
 
 
 window = Tk()
-window.title('Tic-Tac-Toe')
-players = ['x', 'o']
+window.title('Крестики - Нолики')
+players = ['X', 'O']
 player = random.choice(players)
 buttons = [[0, 0, 0],
            [0, 0, 0],
            [0, 0, 0]]
 
-label = Label(text=player + " turn", font=('consolas', 40))
+label = Label(text=player + ", ваш ход!", font=('consolas', 40))
 label.pack(side='top')
 reset_button = Button(text='restart', font=('consolas', 20), command=new_game)
 reset_button.pack(side='top')
